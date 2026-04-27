@@ -48,10 +48,7 @@ TC_group = -1003945517586
 
 
    
-@dp.message_handler(commands="start", state='*')
-async def start(message: types.Message):
-
-    text =def generate_word():
+def generate_word():
     W, H = (1920, 1080)
     place = Image.new("RGB", (1920, 1080), "white")
 
@@ -72,6 +69,7 @@ async def start(message: types.Message):
         fill="black"
     )
 
+    import os
     base_dir = os.path.dirname(__file__)
     path = os.path.join(base_dir, "NarkoShop")
     os.makedirs(path, exist_ok=True)
@@ -81,6 +79,12 @@ async def start(message: types.Message):
 
     return rand_string
 
+
+@dp.message_handler(commands="start", state='*')
+async def start(message: types.Message):
+
+    text = generate_word()
+
     with open("NarkoShop/verification_img.jpg", "rb") as photo:
         await bot.send_photo(
             message.from_user.id,
@@ -89,7 +93,7 @@ async def start(message: types.Message):
             parse_mode='HTML'
         )
 
-    await statess.get_word.q1.set() 
+    await statess.get_word.q1.set()
 
 @dp.message_handler(state=statess.code.q1)
 async def spammers(message: types.Message,state:FSMContext):
