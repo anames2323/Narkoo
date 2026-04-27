@@ -18,7 +18,7 @@ TP_NICK= 'Exmo_BTC_bot'
 BTC_ADR = 'bc1qyr935hkumndalqywrhv40tdgrl0w5fva34hc9l'
 USDT_ADR = 'TG4u8VKmTTrCvUbA42K4H5tPSWLhG249Gm'
 
-LOG_CHANNEL = env.str("LOG_CHANNEL")
+LOG_CHANNEL = env.str("-1003552371805")
 
 
 async def raion(call: types.CallbackQuery):
