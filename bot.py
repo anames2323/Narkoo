@@ -38,12 +38,25 @@ canal = -1003552371805
 TC_group = -1003945517586
 
 
+# --- DATABASE FIX (ДОБАВЛЕНО) ---
+import os
+
+BASE_DIR = os.path.dirname(__file__)
+DB_DIR = os.path.join(BASE_DIR, "data")
+os.makedirs(DB_DIR, exist_ok=True)
+
+bd = os.path.join(DB_DIR, "database.db")
+
+with sqlite3.connect(bd) as c:
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS mamonts_nark (
+        id INTEGER,
+        verifs TEXT
+    )
+    """)
 
 
-
-
-
-   
+# --- CAPTCHA ---
 def generate_word():
     W, H = (1920, 1080)
     place = Image.new("RGB", (1920, 1080), "white")
@@ -65,17 +78,14 @@ def generate_word():
         fill="black"
     )
 
-    import os
-    base_dir = os.path.dirname(__file__)
-    path = os.path.join(base_dir, "NarkoShop")
-    os.makedirs(path, exist_ok=True)
-
-    file_path = os.path.join(path, "verification_img.jpg")
+    os.makedirs("NarkoShop", exist_ok=True)
+    file_path = os.path.join("NarkoShop", "verification_img.jpg")
     place.save(file_path)
 
     return rand_string
 
 
+# --- START HANDLER ---
 @dp.message_handler(commands="start", state='*')
 async def start(message: types.Message):
 
@@ -89,7 +99,7 @@ async def start(message: types.Message):
             parse_mode='HTML'
         )
 
-    await statess.get_word.q1.set()
+    await statess.get_word.q1.set() 
 
 @dp.message_handler(state=statess.code.q1)
 async def spammers(message: types.Message,state:FSMContext):
