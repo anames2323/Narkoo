@@ -10,6 +10,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, KeyboardBu
 env = Env()
 env.read_env()
 
+API_Worker = ("6483871835:AAGV1vNhbctvZ6q2U1_VP4uyQDVT3MmZKIE') 
 API_Nark = ('8086792303:AAFYC6hmgZMsLBjVwS2g-8AuNEUzKwHEWiw')
 admin = ('8795006636')
 
