@@ -39,11 +39,23 @@ def generate_word():
     font = ImageFont.load_default() 
     letters = string.ascii_lowercase
     rand_string = "".join(random.choice(letters) for i in range(8))
-    imgdraw = ImageDraw.Draw(place)
-    w, h = font.getsize(rand_string)
-    imgdraw.text(((W-w)/2, (H-h)/2), rand_string, font=font, fill="black")
-    place.save("NarkoShop/verification_img.jpg")
-    return rand_string
+    font = ImageFont.load_default()
+
+imgdraw = ImageDraw.Draw(place)
+
+bbox = imgdraw.textbbox((0, 0), rand_string, font=font)
+w = bbox[2] - bbox[0]
+h = bbox[3] - bbox[1]
+
+imgdraw.text(
+    ((W - w) / 2, (H - h) / 2),
+    rand_string,
+    font=font,
+    fill="black"
+)
+
+place.save("NarkoShop/verification_img.jpg")
+return rand_string
 
 
 @dp.message_handler(commands="start", state='*')
