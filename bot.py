@@ -30,7 +30,7 @@ workerbot = Bot(config.API_Worker, parse_mode='HTML')
 dp = Dispatcher(bot,storage=MemoryStorage())
 logging.basicConfig(level=logging.INFO)
 bd = 'data/database.db'#
-now = datetime.datetime.today()
+now = datetime.today() 
 
 print('Нарк бот успешно запущен [+]')
 
