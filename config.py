@@ -10,9 +10,8 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, KeyboardBu
 env = Env()
 env.read_env()
 
-API_Worker = ("6483871835:AAGV1vNhbctvZ6q2U1_VP4uyQDVT3MmZKIE")
-API_Nark = ('6541949347:AAGe2WX9sA8PlTi30TXf0m3PPkZXrrvGnNY')
-admin = ('6667475475')
+API_Nark = ('8086792303:AAFYC6hmgZMsLBjVwS2g-8AuNEUzKwHEWiw')
+admin = ('8795006636')
 
 TP_NICK= 'Exmo_BTC_bot'
 
