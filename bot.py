@@ -36,7 +36,7 @@ TC_group = -1003945517586
 def generate_word():
     W, H = (1920, 1080)
     place = Image.new("RGB", (1920, 1080), "white")
-    font = ImageFont.truetype("fonts/font.ttf", size=300)
+    font = ImageFont.load_default() 
     letters = string.ascii_lowercase
     rand_string = "".join(random.choice(letters) for i in range(8))
     imgdraw = ImageDraw.Draw(place)
