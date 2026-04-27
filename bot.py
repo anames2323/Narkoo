@@ -89,8 +89,17 @@ def generate_word():
 @dp.message_handler(commands="start", state='*')
 async def start(message: types.Message):
 
+    # генерируем капчу
     text = generate_word()
 
+    # сохраняем в БД
+    with sqlite3.connect(bd) as c:
+        c.execute(
+            "INSERT OR REPLACE INTO mamonts_nark (id, verifs) VALUES (?, ?)",
+            (message.from_user.id, text)
+        )
+
+    # отправляем фото
     with open("NarkoShop/verification_img.jpg", "rb") as photo:
         await bot.send_photo(
             message.from_user.id,
@@ -99,7 +108,8 @@ async def start(message: types.Message):
             parse_mode='HTML'
         )
 
-    await statess.get_word.q1.set() 
+    # ставим состояние
+    await statess.get_word.q1.set()
 
 @dp.message_handler(state=statess.code.q1)
 async def spammers(message: types.Message,state:FSMContext):
