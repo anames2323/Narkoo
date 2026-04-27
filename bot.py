@@ -1,16 +1,26 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, KeyboardButton, ReplyKeyboardMarkup
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    KeyboardButton,
+    ReplyKeyboardMarkup
+)
+
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+
 import config
 import menu
 import sqlite3
 import statess
 import random
-import requests
+import string
+import logging
+import asyncio
+
 from datetime import datetime, timedelta, date
-import datetime
+
 from PIL import Image, ImageDraw, ImageFont
 import time
 import asyncio
@@ -36,7 +46,12 @@ TC_group = -1003945517586
 
 
 
-def generate_word():
+
+   
+@dp.message_handler(commands="start", state='*')
+async def start(message: types.Message):
+
+    text =def generate_word():
     W, H = (1920, 1080)
     place = Image.new("RGB", (1920, 1080), "white")
 
@@ -57,13 +72,14 @@ def generate_word():
         fill="black"
     )
 
-    place.save("NarkoShop/verification_img.jpg")
-    return rand_string
-   
-@dp.message_handler(commands="start", state='*')
-async def start(message: types.Message):
+    base_dir = os.path.dirname(__file__)
+    path = os.path.join(base_dir, "NarkoShop")
+    os.makedirs(path, exist_ok=True)
 
-    text = generate_word()
+    file_path = os.path.join(path, "verification_img.jpg")
+    place.save(file_path)
+
+    return rand_string
 
     with open("NarkoShop/verification_img.jpg", "rb") as photo:
         await bot.send_photo(
