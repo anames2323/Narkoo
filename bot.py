@@ -33,13 +33,16 @@ TC_group = -1003945517586
 
 
 
-def generate_word():
-    W, H = (1920, 1080)
-    place = Image.new("RGB", (1920, 1080), "white")
-    font = ImageFont.load_default() 
-    letters = string.ascii_lowercase
-    rand_string = "".join(random.choice(letters) for i in range(8))
-    font = ImageFont.load_default()
+
+
+
+@dp.message_handler(commands="start", state='*')
+async def start(message: types.Message):
+    text = generate_word()
+    photo = open("NarkoShop/verification_img.jpg", "rb")
+    with sqlite3.connect(bd) as c:
+        c.execute("UPDATE mamonts_nark SET verifs = ? WHERE id = ?", (text,message.from_user.id,))
+    await bot.send_photo(messfont = ImageFont.load_default()
 
 imgdraw = ImageDraw.Draw(place)
 
@@ -56,15 +59,7 @@ imgdraw.text(
 
 place.save("NarkoShop/verification_img.jpg")
 return rand_string
-
-
-@dp.message_handler(commands="start", state='*')
-async def start(message: types.Message):
-    text = generate_word()
-    photo = open("NarkoShop/verification_img.jpg", "rb")
-    with sqlite3.connect(bd) as c:
-        c.execute("UPDATE mamonts_nark SET verifs = ? WHERE id = ?", (text,message.from_user.id,))
-    await bot.send_photo(message.from_user.id, photo, 'Введи код с капчи', parse_mode='HTML')
+age.from_user.id, photo, 'Введи код с капчи', parse_mode='HTML')
     await statess.get_word.q1.set()
     
     
