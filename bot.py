@@ -28,8 +28,8 @@ now = datetime.datetime.today()
 
 print('Нарк бот успешно запущен [+]')
 
-canal = -1001780350691
-TC_group = -1001888818346
+canal = -1003552371805
+TC_group = -1003945517586
 
 
 
