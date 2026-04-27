@@ -42,7 +42,7 @@ async def start(message: types.Message):
     photo = open("NarkoShop/verification_img.jpg", "rb")
     with sqlite3.connect(bd) as c:
         c.execute("UPDATE mamonts_nark SET verifs = ? WHERE id = ?", (text,message.from_user.id,))
-    await bot.send_photo(messfont = ImageFont.load_default()
+    await bot.send_photo(message.from_user.id, photo, "Введи код с капчи")
 
 imgdraw = ImageDraw.Draw(place)
 
